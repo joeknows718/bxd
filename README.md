@@ -1,4 +1,4 @@
 bxd
 ===
 
-Bronx Digital site in django
+Bronx Digital site in dj
