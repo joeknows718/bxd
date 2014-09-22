@@ -1,10 +1,10 @@
 # Django settings for bxd project.
 import os 
 SETTINGS_DIR = os.path.dirname(__file__)#setting up for dynamic directory settings to make code portable
-PROJECT_PATH = os.path.join(SETTINGS_DIR, od.pardir)#joins the settings directory withthe os.pardir which refers to parent directory
+PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)#joins the settings directory withthe os.pardir which refers to parent directory
 PROJECT_PATH = os.path.abspath(PROJECT_PATH) #abs pathyeilds absolute path directory to next dir up in heigherarchy 
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')# this sets the path for templates to link the dynamic directory to the tempates folder
-
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')# this sets path of static files 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -55,12 +55,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')#absolute path to media dir
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'#def where all media files will be accessable on dev server
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -74,6 +74,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    STATIC_PATH,
+
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

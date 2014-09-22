@@ -1,13 +1,30 @@
 <!DOCTYPE html>
+{% load static %} 
 <html>
 	<head>
 		<title>BXD</title>
-	</head>
 
-	<body>
-		<H1>Welcome to the Bronx Digital</H1>
-		Lets get started! <strong>{{ boldmessage }}</strong><br />
-		<a href="/rango/about/">About</a>a><br />
-	</body>
+	</head>
+	<header>
+		<div class="head">
+			<H1>Welcome to the Bronx Digital</H1>
+			<div class="logo_container">
+				<img src="{% static "images/graffiti_dondi_small.png" %}">
+			</div>
+			Lets get started! <strong>{{ boldmessage }}</strong><br />
+			<div class="main_nav">
+				<ul>
+				 <li><a href="/rango/">BXD</a></li>
+				 <li><a href="/rango/about/">About</a></li>
+				 <li>BX Tech Roundtable</li>
+				 <li>The Meetup</li>
+				 <li>Resources</li>
+				 <li>Projects</li>
+				 <li>Forum</li>
+				 <li>Blog</li>
+				</ul>
+			</div>
+		</div>
+	</header>
 
 </html>

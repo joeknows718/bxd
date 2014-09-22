@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -16,4 +16,10 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^rango/', include('rango.urls'))
     ) #url for rango tuple added
-
+if settings.DEBUG: #if the debug is set to true, then an addiiton url is added to the patterns tuple
+	urlpatterns += patterns(
+		'django.views.static',
+		(r'media/(?P<path>.*)',#any url starting with media will be appended to the django.views.static file. EI uploading a profile pic  
+		'serve',
+		{'document_root': settings.MEDIA_ROOT}),
+		)
