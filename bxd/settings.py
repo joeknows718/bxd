@@ -5,6 +5,7 @@ PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)#joins the settings director
 PROJECT_PATH = os.path.abspath(PROJECT_PATH) #abs pathyeilds absolute path directory to next dir up in heigherarchy 
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')# this sets the path for templates to link the dynamic directory to the tempates folder
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')# this sets path of static files 
+DATABASE_PATH = os.path.join(PROJECT_PATH, 'rango.db') #appends DB file to project path, used as location for local SQLITE3 db
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -17,7 +18,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/joeknows718/projects/python/django/sqlite3.db',                      # Or path to database file if using sqlite3.
+        'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -129,7 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'rango',
