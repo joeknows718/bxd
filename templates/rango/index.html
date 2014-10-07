@@ -8,10 +8,6 @@
 	<header>
 		<div class="head">
 			<H1>Welcome to the Bronx Digital</H1>
-			<div class="logo_container">
-				<img src="{% static "images/graffiti_dondi_small.png" %}">
-			</div>
-			Lets get started! <strong>{{ boldmessage }}</strong><br />
 			<div class="main_nav">
 				<ul>
 				 <li><a href="/rango/">BXD</a></li>
@@ -24,6 +20,22 @@
 				 <li>Blog</li>
 				</ul>
 			</div>
+			<div class="logo_container">
+				<img src="{% static "images/graffiti_dondi_small.png" %}">
+			</div>
+			Lets get started! <strong>Code Create Collaborate</strong><br />
+		</div>
+		<div>
+			<p>Check out some Python Resources to get your feet wet</p>
+			{% if categories %}
+				<ul>
+				{% for category in categories %}
+					<li><a href="/rango/category/{{ category.url }}">{{ category.name }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong>There are no Categories Present</strong>
+			{% endif %}	
 		</div>
 	</header>
 
