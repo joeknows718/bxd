@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^rango/', include('rango.urls')),
+    url(r'^polls/', include('polls.urls')),
     url(r'^admin/', include(admin.site.urls)),
     ) #url for rango tuple added
 if settings.DEBUG: #if the debug is set to true, then an addiiton url is added to the patterns tuple

@@ -4,6 +4,13 @@ from django.shortcuts import render_to_response
 from rango.models import Category
 from rango.models import Page	
 
+def decodeUrl(str):
+	return str.replace(' ','_')
+
+def encodeUrl(str):
+	return str.replace('_', ' ')
+	
+
 def index(request):
 		#Request the context of the request
 		#context contains info ei client machine detials
@@ -16,7 +23,7 @@ def index(request):
 		#use shortcut funtion to simplify
 		#the first parameter in this render respnse is the template that gets called
 		for category in category_list :
-			category.url = category.name.replace(' ', '_')
+			category.url = decodeUrl(category.name)
 		return render_to_response('rango/index.html', context_dict, context)
 
 
@@ -31,7 +38,8 @@ def category(request, category_name_url):#set a page request url map for categor
 	# change underscores in category name to spaces
 	#urls don handle spaces well, so we will encode them with spaces again to get the name
 	#then we can replace the underscores with spaces again to get the name. 
-	category_name = category_name_url.replace('_', ' ')
+	category_name = encodeUrl(category_name_url)
+	print category_name
 	#create context dictionary which we can pass to template redering engine
 	#we start by containing the name of the category passes by the user
 	context_dict = {'category_name' : category_name}
