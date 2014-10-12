@@ -8,6 +8,8 @@ from rango.forms import PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+import datetime
+
 def encodeUrl(str):
 	return str.replace(' ','_')
 
@@ -30,6 +32,7 @@ def index(request):
 		for category in category_list :
 			category.url = encodeUrl(category.name)
 		return render_to_response('rango/index.html', context_dict, context)
+
 		
 
 def resources(request):

@@ -3,16 +3,20 @@
 <html>
 	<head>
 		<title>{% block title %}{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    	<link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+   		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+   		<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+
 
 	</head>
 	<header>
 		<div class="head">
-			<H1>Welcome to the Bronx Digital</H1>
 			<div class="logo_container">
 				<img src="{% static "images/graffiti_dondi_small.png" %}">
 			</div>
-			<div class="main_nav">
-				<ul>
+				<ul >
 				 <li><a href="/rango/">BXD</a></li>
 				 <li><a href="/rango/about/">About</a></li>
 				 <li>BX Tech Roundtable</li>
@@ -23,18 +27,21 @@
 				 <li>Blog</li>
 				</ul>
 			</div>
-			<div id="login_reg">
+			
 			{% if user.is_authenticated %}
-				<a href="/rango/logout/">Logout</a>
+			<ul >
+				<li><a href="/rango/logout/">Logout</a></li>
+			</ul>
 			{% else %}
 				<a href="/rango/register/">Register Here</a>
 				<a href="/rango/login/">Login</a>
 			{% endif %}
-			</div>
-		</div>
 	</header>
 	<body>
 		{% block body_block %}{% endblock %}
+
+	<script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 	</body>
 	<footer>
 		<p>(C) 718Digital</p>
