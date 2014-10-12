@@ -23,7 +23,7 @@ class PageForm(forms.ModelForm):
 		fields = ('title', 'url', 'views')
 
 	def  clean(self):
-		cleaned_data = self.clean_data
+		cleaned_data = self.cleaned_data
 		url = cleaned_data.get('url')
 
 		#If Url is not empty and dont start with 'http://' prepend 'http://'
