@@ -8,6 +8,7 @@ STATIC_PATH = os.path.join(PROJECT_PATH, 'static')# this sets path of static fil
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'rango.db') #appends DB file to project path, used as location for local SQLITE3 db
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+LOGIN_URL =  '/rango/restricted/'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

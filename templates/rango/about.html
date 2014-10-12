@@ -1,34 +1,8 @@
-<!DOCTYPE html>
-{% load static %} 
-<html>
-	<head>
-		<title>BXD</title>
-
-	</head>
-	<header>
-		<div class="head">
-			<H1>Welcome to the Bronx Digital</H1>
-			<div class="logo_container">
-				<img src="{% static "images/graffiti_dondi_small.png" %}">
-			</div>
-			Lets get started! <strong>{{ boldmessage }}</strong><br />
-			<div class="main_nav">
-				<ul>
-				 <li><a href="/rango/">BXD</a></li>
-				 <li><a href="/rango/about/">About</a></li>
-				 <li>BX Tech Roundtable</li>
-				 <li>The Meetup</li>
-				 <li>Resources</li>
-				 <li>Projects</li>
-				 <li>Forum</li>
-				 <li>Blog</li>
-				</ul>
-			</div>
-
-		</div>
+{% extends 'rango/base.html' %}
+	{% block title %} Add Page {% endblock %}
+	{% block body_block %}
 		<div class="content">
-			<h1>Bronx Digital is a collaborative Community of Bronx based Coder</h1>
-			<p> We make things - We make things happen.</p> 
+			<h1>Bronx Digital is a collaborative Community of Bronx based Coders</h1>
+			<p> This website aims to be the knowledge base for the Bronx Tech community, providing <a href"/rango/resources/">resources</a> to help increase your skills, events to come together on, and more.</p> 
 		</div>
-	</header>
-</html>
+	{% endblock %}

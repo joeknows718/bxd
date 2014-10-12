@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime 
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Category(models.Model):
 	name = models.CharField(max_length=128, unique=True) #if unique is set to true this only on instace of field can exist throught db model
@@ -29,3 +29,16 @@ class Event(models.Model):
 
 	def __unicode__(self):
 		return self.name 
+
+class UserProfile(models.Model):
+	#this links user profile to the model
+	user = models.OneToOneField(User)
+	#additional attributes
+	website = models.URLField(blank=True)
+	picture = models.ImageField(upload_to='profile_images', blank=True)
+
+	#override unicode
+	def  __unicode__(self):
+		return self.user.username
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %} 
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+
+	</head>
+	<header>
+		<div class="head">
+			<H1>Welcome to the Bronx Digital</H1>
+			<div class="logo_container">
+				<img src="{% static "images/graffiti_dondi_small.png" %}">
+			</div>
+			<div class="main_nav">
+				<ul>
+				 <li><a href="/rango/">BXD</a></li>
+				 <li><a href="/rango/about/">About</a></li>
+				 <li>BX Tech Roundtable</li>
+				 <li><a href="http://meetup.com/thebronxdigitalmeetup" target="_blank">The Meetup</li>
+				 <li><a href="/rango/resources/">Resources</a></li>
+				 <li>Projects</li>
+				 <li>Forum</li>
+				 <li>Blog</li>
+				</ul>
+			</div>
+			<div id="login_reg">
+			{% if user.is_authenticated %}
+				<a href="/rango/logout/">Logout</a>
+			{% else %}
+				<a href="/rango/register/">Register Here</a>
+				<a href="/rango/login/">Login</a>
+			{% endif %}
+			</div>
+		</div>
+	</header>
+	<body>
+		{% block body_block %}{% endblock %}
+	</body>
+	<footer>
+		<p>(C) 718Digital</p>
+	</footer>

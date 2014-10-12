@@ -1,14 +1,8 @@
 {% extends 'rango/base.html' %}
 	{% block title %} BXD {% endblock %}
 	{% block body_block %}
-		<div>
-			{% if user.is_authenticated %}
-				<h1> Hello, {{ user.username }}, Lets get started! <strong>Code Create Collaborate</strong><br /></h1>
-			{% else %}
-				<h1>Lets get started! <strong>Code Create Collaborate</strong><br /></h1> 
-				<h2>Not a member? <a href="/rango/register/">Register today!</a></h2>
-			{% endif %}
-		</div>
+
+		<h1>Lets get started! <strong>Code Create Collaborate</strong></h1><br />
 		
 		<div>
 			<p>Check out some Python Resources to get your feet wet</p>
@@ -22,17 +16,17 @@
 				<strong>There are no Categories Present</strong>
 			{% endif %}	
 		</div>
+		<a href="/rango/add_category/">Add a New Category</a>
 		<div>
 			<p>Check out some tutorials</p>
 			{% if pages %}
 				<ul>
 				{% for page in pages %}
 					<li><a href="{{ page.url }}">{{ page.title }}</a></li>
-				{% endfor %}
+					{% endfor %}
 				</ul>
 			{% else %}
 				<strong>There are no Pages Present</strong>
 			{% endif %}	
 		</div>
-		<div>
-	{% endblock %}			
+	{% endblock %}

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<<!DOCTYPE html>
-<html>
-<head>
-	<title>BXD</title>
-</head>
-<body>
+{% extends 'rango/base.html' %}
+	{% block title %} {{ category_name }} {% endblock %}
+	{% block body_block %}
 	<h1>{{ category_name }}</h1>
 	{% if category %}
 		{% if pages %}
@@ -13,9 +9,10 @@
 			<li><a href="{{ page.url }}">{{ page.title }}</a></li>
 			{% endfor %}
 		</ul>
+		
 		{% else %}
-			The specified category {{ category_name }} does not exist!
+			The specified category {{ category_name }} has nothing associated with it!
 		{% endif %}
 	{% endif %}
-</body>
-</html>
+	<a href="/rango/category/{{ category_name_url }}/add_page/">Add a resource page for this category:</a>
+	{% endblock %}
