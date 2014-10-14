@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^rango/', include('rango.urls')),
     url(r'^polls/', include('polls.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^calendar/', include('calendarium.urls')),
     ) #url for BXD tuple added
 if settings.DEBUG: #if the debug is set to true, then an addiiton url is added to the patterns tuple
 	urlpatterns += patterns(

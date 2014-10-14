@@ -8,7 +8,7 @@ from rango.forms import PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-import datetime
+from datetime import datetime
 
 def encodeUrl(str):
 	return str.replace(' ','_')
@@ -211,3 +211,9 @@ def restricted(request):
 def user_logout(request):
 	logout(request)
 	return HttpResponseRedirect('/rango/')
+
+def event_page(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('rango/events.html', context_dict, context)
+
