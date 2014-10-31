@@ -3,40 +3,56 @@
 <html>
 	<head>
 		<title>{% block title %}{% endblock %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <script type="text/javascript" scr="{% static 'js/jquery-2.1.1.min.js' %}"></script>
 	</head>
 	<header>
-		<div class="head">
-			<div class="logo_container">
-				<img src="{% static "images/graffiti_dondi_small.png" %}">
-			</div>
-			<div class="main_nav">
-				<ul class="main_nav">
-				 <li><a href="/rango/">BXD</a></li>
-				 <li><a href="/rango/about/">About</a></li>
-				 <li>BX Tech Roundtable</li>
-				 <li><a href="/rango/events/" target="_blank">Events</li>
-				 <li><a href="/rango/resources/">Resources</a></li>
-				 <li>Projects</li>
-				 <li>Forum</li>
-				 <li>Blog</li>
-				</ul>
-			</div>
-			
-			{% if user.is_authenticated %}
-			<div class="main_nav_log">
-			<ul class="main_nav_log" >
-				<li><a href="/rango/logout/">Logout</a></li>
-			</ul>
-			{% else %}
-				<a href="/rango/register/">Register Here</a>
-				<a href="/rango/login/">Login</a>
-			{% endif %}
-			</div>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+         <a class="navbar-brand" href="/rango/">
+            <img class="logo_img" src="{% static "images/graffiti_dondi_small.png" %}">
+          </a>
+          <ul class="nav navbar-nav">
+            <li><a href="/rango/">BXD</a></li>
+            <li><a href="/rango/about/">About</a></li>
+            <li><a href="/rango/events/">Events</a></li>
+            <li><a href="/rango/resources/">Resources</a></li>
+          </ul>
+           {% if user.is_authenticated %}
+          <ul class="nav pull-right" >
+            <li><a href="/rango/logout/">Logout</a></li>
+          </ul>
+          {% else %}
+          <ul class="nav navbar-nav pull-right" >
+            <li><a href="/rango/register/">Register Here</a></li>
+            <li><a href="/rango/login/">Login</a></li>
+          </ul>
+          {% endif %}
+        </div><!--/.nav-collapse -->
+    </nav>
 	</header>
 	<body>
 		{% block body_block %}{% endblock %}
-
+		<script type="text/javascript" scr="{% static 'js/bootstrap.js' %}"></script>
 	</body>
-	<footer>
-		<p>(C) 718Digital</p>
+	<footer class="navbar navbar-inverse navbar-fixed-bottom">
+		<div class="container">
+			<p><i class="fa fa-copyright"></i><span id="d718"> 718</span>Digital</p>
+		</div>	
 	</footer>

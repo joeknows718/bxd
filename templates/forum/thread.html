@@ -1,0 +1,27 @@
+<!--posts-->
+<div class="title">{{ title }}</div>
+<div id="list">
+	{% for posts in post.object_list %}
+	<div class="post">
+		<span class="title">{{ post.title }}</span><br/>
+		by {{ post.creator }} | <span class="date">{{ post.created }}</span><br/>
+		{{ post.body }} <br/>
+	</div>
+	{% endfor %}
+</div>
+<div class="pic">
+	{% with post.profile_data as pdata %}
+		{% if pdata.1 %}
+			<img src="{{ media_root }}{{ pdata.1}}" /><br/>
+		{% endif %}
+	{{ post.creator }}<br />
+	Posts: {{ pdata.0 }}<br />
+	Joined: {{ post.creator.joined_date|date:"M d Y" }}
+	{% endwith %}
+</div>
+
+<!--Next prev links-->
+
+<a class="button" href="{% url 'forums.views.post' 'reply' pk %}">Reply</a>
+<a href="{% url 'forums.views.forum' forum_pk %}"> &lt;&lt; back to list of topics</a>
+

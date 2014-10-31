@@ -150,6 +150,8 @@ INSTALLED_APPS = (
     'calendarium',
     'filer',
     'easy_thumbnails',
+    'forums',
+    'registration.backends.default.urls',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

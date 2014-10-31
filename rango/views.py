@@ -20,7 +20,9 @@ def decodeUrl(str):
 def index(request):
 		#Request the context of the request
 		#context contains info ei client machine detials
+		request.session.set_test_cookie
 		context = RequestContext(request)
+		
 		#Const. A dict. to pass to template engine as context
 		#bold message dict. key is the same as bold message embedded in index BXD index.html
 		category_list = Category.objects.order_by('likes')[:5] 
@@ -31,8 +33,21 @@ def index(request):
 		#the first parameter in this render respnse is the template that gets called
 		for category in category_list :
 			category.url = encodeUrl(category.name)
-		return render_to_response('rango/index.html', context_dict, context)
 
+		if request.session.get('last_visit'):
+			last_visit_time = request.session.get('last_visit')
+			visits = request.session.get('visits', '0')
+
+			if datetime.now - datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S").seconds > 10:
+				request.session['visits'] = visits + 1 
+				request.session['last_visit'] = str(datetime.now())
+
+			else:
+				request.session['last_visit'] = str(datetime.now())
+				request.session['visits'] = 1  
+
+
+		return render_to_response('rango/index.html', context_dict, context)
 		
 
 def resources(request):
@@ -49,7 +64,12 @@ def resources(request):
 def about(request):
 	#return HttpResponse("<a href='/BronxDigital/'>BXD</a> Bronx Digital is a collaborative Community of Bronx based Coders")	
 		context = RequestContext(request)
-		context_dict = {}
+		if request.session.get('visits'):
+			count = request.session.get('visits')
+		else:
+			count = 0
+		context_dict = { 'visits' : count }
+
 		return render_to_response('rango/about.html', context_dict, context)
 
 def category(request, category_name_url):#set a page request url map for category names
@@ -136,9 +156,15 @@ def add_page(request, category_name_url):
 	return render_to_response('rango/add_page.html', {'category_name_url': category_name_url, 'category_name': category_name, 'form': form}, context)
 
 def register(request):
+	if request.session.test_cookie_worked():
+		print "TEST SESSION WORKS"
+		request.session.delete_test_cookie()
+
+
 	context = RequestContext(request)
 	registered = False #initial is set to false
 
+	
 	if request.method == 'POST':
 		#grab info from form raw
 		user_form = UserForm(data=request.POST)
