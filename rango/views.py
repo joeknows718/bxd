@@ -59,7 +59,13 @@ def resources(request):
 			category.url = encodeUrl(category.name)
 		return render_to_response('rango/resources.html', context_dict, context)
 
-
+def projects(request):
+	context = RequestContext(request)
+	project_list =  Project.objects.order_by('likes')[:10]
+	context_dict = {'projects' : project_list}
+	for project in project_list :
+		project.url = encodeUrl(project.project_name)
+	return render_to_response('rango/projects.html', context_dict, context)
 
 def about(request):
 	#return HttpResponse("<a href='/BronxDigital/'>BXD</a> Bronx Digital is a collaborative Community of Bronx based Coders")	
@@ -112,7 +118,7 @@ def project_info(request, project_name_url):#set a page request url map for cate
 		#can we find the category with the given name
 		#if we cant the .get() method raises a DoesNotExist exception.
 		#so the .get() method returnes one model instance or raises the exception\\\
-		project = Project.objects.get(name=project_name)
+		project = Project.objects.get(project_name=project_name)
 		context_dict['project'] = project
 		#we also add the category object from db to context dict. 
 		#and use this in the template to verify that the category exists. 
@@ -181,7 +187,6 @@ def add_project(request):
 	
 	if request.method == 'POST':
 		form = ProjectForm(request.POST)
-		print form
 		if form.is_valid():
 
 			project = form.save(commit=False)
@@ -189,8 +194,7 @@ def add_project(request):
 			project.save()
 
 
-			return project_info(request, project_name_url)
-
+			return index(request)
 		else:
 			print form.errors
 			print request.user

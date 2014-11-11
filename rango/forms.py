@@ -25,9 +25,10 @@ class ProjectForm(forms.ModelForm):
 
 		exclude = ('creator')
 
-	def  clean(self):
+	def clean(self):
 		cleaned_data = self.cleaned_data
 		website = cleaned_data.get('website')
+		github = cleaned_data.get('github')
 
 		#If Url is not empty and dont start with 'http://' prepend 'http://'
 
@@ -35,19 +36,18 @@ class ProjectForm(forms.ModelForm):
 			website = 'http://' + website
 			cleaned_data['website'] = website
 
-		return cleaned_data
-
-	def  clean(self):
-		cleaned_data = self.cleaned_data
-		github = cleaned_data.get('github')
-
-		#If Url is not empty and dont start with 'http://' prepend 'http://'
-
 		if github and not github.startswith('http://'):
 			github = 'http://' + github
 			cleaned_data['github'] = github
 
 		return cleaned_data
+
+
+		#If Url is not empty and dont start with 'http://' prepend 'http://'
+
+		
+
+		
 
 class PageForm(forms.ModelForm):
 	title = forms.CharField(max_length=128, help_text="Enter the title of the page:")
