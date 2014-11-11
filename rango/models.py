@@ -41,4 +41,18 @@ class UserProfile(models.Model):
 	def  __unicode__(self):
 		return self.user.username
 
+class Project(models.Model):
+	creator = models.ForeignKey(User)
+	project_name = models.CharField(max_length=128)
+	website = models.URLField(blank=True)
+	github = models.URLField(blank=True)
+	description = models.CharField(max_length=255, unique=True)
+	likes = models.IntegerField(default=0)
+
+	def __unicode__(self):
+
+		return self.project_name
+
+
+
 

@@ -1,6 +1,5 @@
  body {
         padding-top: 200px;
-        padding-bottom: 40px;
        
       }
       .sidebar-nav {
@@ -37,8 +36,10 @@
 
 .navbar-fixed-bottom{
   font-size: 20px;
-  padding: 20px;
+  padding: 15px;
   color:#fff;
+  position: relative;
+  margin-bottom: 0;
 }
 
 #d718{
@@ -46,7 +47,7 @@
   font-weight: 900;
 }
 
-
+}
 @media (max-width: 980px) {
  /* Enable use of floated navbar text */
      .navbar-text.pull-right {

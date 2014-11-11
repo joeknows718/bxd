@@ -47,6 +47,18 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'rango', ['UserProfile'])
 
+        # Adding model 'Project'
+        db.create_table(u'rango_project', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('creator', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('project_name', self.gf('django.db.models.fields.CharField')(max_length=128)),
+            ('website', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
+            ('github', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
+            ('description', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255)),
+            ('likes', self.gf('django.db.models.fields.IntegerField')(default=0)),
+        ))
+        db.send_create_signal(u'rango', ['Project'])
+
 
     def backwards(self, orm):
         # Deleting model 'Category'
@@ -60,6 +72,9 @@ class Migration(SchemaMigration):
 
         # Deleting model 'UserProfile'
         db.delete_table(u'rango_userprofile')
+
+        # Deleting model 'Project'
+        db.delete_table(u'rango_project')
 
 
     models = {
@@ -122,6 +137,16 @@ class Migration(SchemaMigration):
             'title': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': '200'}),
             'views': ('django.db.models.fields.IntegerField', [], {'default': '0'})
+        },
+        u'rango.project': {
+            'Meta': {'object_name': 'Project'},
+            'creator': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
+            'description': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
+            'github': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'likes': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'project_name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
+            'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
         },
         u'rango.userprofile': {
             'Meta': {'object_name': 'UserProfile'},

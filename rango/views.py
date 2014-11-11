@@ -1,10 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from rango.models import Category
+from rango.models import Category, Project
 from rango.models import Page	
 from rango.forms import CategoryForm
-from rango.forms import PageForm, UserForm, UserProfileForm
+from rango.forms import PageForm, UserForm, UserProfileForm, ProjectForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -103,6 +103,26 @@ def category(request, category_name_url):#set a page request url map for categor
 	#got to render the resp.  and send to client
 	return render_to_response('rango/category.html', context_dict, context)	
 
+def project_info(request, project_name_url):#set a page request url map for category names
+	context = RequestContext(request) #requests context from the request sent to us
+	project_name = decodeUrl(project_name_url)
+	context_dict = {'project_name' : project_name, 'project_name_url': project_name_url}
+
+	try:
+		#can we find the category with the given name
+		#if we cant the .get() method raises a DoesNotExist exception.
+		#so the .get() method returnes one model instance or raises the exception\\\
+		project = Project.objects.get(name=project_name)
+		context_dict['project'] = project
+		#we also add the category object from db to context dict. 
+		#and use this in the template to verify that the category exists. 
+	except Project.DoesNotExist:
+		#we get her if we can not find the category
+		#we dont do anything - template displays no category message
+		pass
+	#got to render the resp.  and send to client
+	return render_to_response('rango/project_info.html', context_dict, context)	
+
 @login_required
 def add_category(request):
 	#get context of request
@@ -151,9 +171,36 @@ def add_page(request, category_name_url):
 		else:
 			print form.errors
 	else:
-		form = PageForm
+		form = PageForm()
 
 	return render_to_response('rango/add_page.html', {'category_name_url': category_name_url, 'category_name': category_name, 'form': form}, context)
+
+@login_required
+def add_project(request):
+	context = RequestContext(request)
+	
+	if request.method == 'POST':
+		form = ProjectForm(request.POST)
+		print form
+		if form.is_valid():
+
+			project = form.save(commit=False)
+			project.creator = request.user
+			project.save()
+
+
+			return project_info(request, project_name_url)
+
+		else:
+			print form.errors
+			print request.user
+
+	else:
+		form = ProjectForm()
+
+	return render_to_response('rango/add_project.html', {'form' : form}, context)
+
+
 
 def register(request):
 	if request.session.test_cookie_worked():
@@ -243,3 +290,7 @@ def event_page(request):
 	context_dict = {}
 	return render_to_response('rango/events.html', context_dict, context)
 
+def fuck_bootstrap(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('rango/bootstraptest.html', context_dict, context)
