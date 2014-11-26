@@ -102,7 +102,7 @@ def profile(request, pk):
 			pf = ProfileForm(instance=profile)
 
 		if profile.avatar:
-			img = "/media/" + profile.avatar.name
+			img = "/profile_images/" + profile.avatar.name
 
 		return render_to_response("forum/profile.html", add_csrf(request, pf=pf, img=img))
 

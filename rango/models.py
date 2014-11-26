@@ -34,6 +34,7 @@ class UserProfile(models.Model):
 	#this links user profile to the model
 	user = models.OneToOneField(User)
 	#additional attributes
+	posts = models.IntegerField(default=0)
 	website = models.URLField(blank=True)
 	picture = models.ImageField(upload_to='profile_images', blank=True)
 

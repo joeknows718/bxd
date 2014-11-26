@@ -16,5 +16,7 @@ urlpatterns = patterns('',
 	url(r'^restricted/', views.restricted, name='/restricted'),
 	url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'events/$', views.event_page, name='events'),
-	url(r'test/$', views.fuck_bootstrap, name='test'),
+	url(r'profile/$', views.profile, name='profile'),
+	url(r'goto/$', views.track_url, name='track_url'),
+	url(r'like_category/$', views.like_category, name='like_category'),
 	) 
