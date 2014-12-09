@@ -1,0 +1,32 @@
+{% extends 'BXD/base.html' %}
+	{% block title %} BXD {% endblock %}
+	{% block body_block %}
+
+		<h1>Lets get started! <strong>Code Create Collaborate</strong></h1><br />
+		
+		<div>
+			<p>Check out some resources to get your feet wet</p>
+			{% if categories %}
+				<ul>
+				{% for category in categories %}
+					<li><a href="/BXD/category/{{ category.slug }}">{{ category.name }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong>There are no Categories Present</strong>
+			{% endif %}	
+		</div>
+		<a href="/BXD/add_category/">Add a New Category</a>
+		<div>
+			<p>Check out some tutorials</p>
+			{% if pages %}
+				<ul>
+				{% for page in pages %}
+					<li><a href="{{ page.url }}" target="_blank">{{ page.title }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong>There are no Pages Present</strong>
+			{% endif %}	
+		</div>
+	{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'BXD/base.html' %}
+	{% block title %} Projects {% endblock %}
+	{% block body_block %}
+	<h1>Lets get started! <strong>Code Create Collaborate</strong></h1><br />
+		
+	<div>
+		<p>Check some projects our community members have cooked up!</p>
+		{% if projects %}
+			<ul>
+			{% for project in projects %}
+				<li><a href="/BXD/project_info/{{ project.slug }}">{{ project.project_name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>There are no projects Present</strong>
+		{% endif %}	
+	</div>
+	<a href="/BXD/add_project/">Add a New Project</a>
+		
+	{% endblock %}
