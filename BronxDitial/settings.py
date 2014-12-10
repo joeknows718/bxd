@@ -69,9 +69,9 @@ DATABASES = {
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BXD_DB',
-        'HOST': 'localhost',
-        'DATABASE_USER': 'joeknows718'
-        'DATABASE_PASSWORD':'tsab11211'),
+        'HOST': '104.236.14.199',
+        'DATABASE_USER': 'joeknows718',
+        'PASSWORD': 'tsab11211',
     }
 }
 
