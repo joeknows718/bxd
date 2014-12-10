@@ -9,8 +9,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^BXD/', include('BXD.urls')),
-    url(r'^calendar/', include('calendarium.urls')),
-    url(r'^calendar/', include('calendarium.urls')),
 )
 
 if settings.DEBUG:
