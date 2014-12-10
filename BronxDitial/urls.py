@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^BXD/$', include('BXD.urls')),
-    url(r'^$', views.index, name='index'),
+    url(r'^$', "BXD.views.index"),
 )
 
 if settings.DEBUG:
