@@ -8,8 +8,10 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^BXD/$', include('BXD.urls')),
-    url(r'^$', "BXD.views.index"),
+    #url(r'^BXD/$', include('BXD.urls')),
+    #url(r'^$', "BXD.views.index"),
+    url(r'', include('BXD.urls')),
+    url(r'^BXD/', include('BXD.urls')),
 )
 
 if settings.DEBUG:
