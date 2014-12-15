@@ -101,7 +101,8 @@ STATIC_URL = '/static/'
 #
 STATIC_ROOT = '/var/www/bxd/BXD/static'
 STATICFILES_DIRS = [
-  STATIC_PATH
+  STATIC_PATH,
+  '/var/www/bxd/BXD/static',
    ]
 
 TEMPLATE_DIRS = [
