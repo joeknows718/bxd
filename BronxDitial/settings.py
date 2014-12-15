@@ -99,7 +99,7 @@ STATIC_URL = '/static/'
 #    ]
 
 #
-STATIC_ROOT = '/var/www/bxd/BXD/static'
+STATIC_ROOT = '/var/www/BXD/bxd/static'
 STATICFILES_DIRS = [
   STATIC_PATH,
    ]
