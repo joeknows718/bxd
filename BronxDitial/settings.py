@@ -98,6 +98,7 @@ STATIC_DIRS = [
     STATIC_PATH,
     ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
     STATIC_PATH,
     ]
