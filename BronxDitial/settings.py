@@ -98,10 +98,11 @@ STATIC_URL = '/static/'
  #   STATIC_PATH,
 #    ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATICFILES_DIRS = [
- #   STATIC_PATH,
-  #  ]
+#
+STATIC_ROOT = '/var/www/bxd/BXD/static'
+STATICFILES_DIRS = [
+  STATIC_PATH
+   ]
 
 TEMPLATE_DIRS = [
     TEMPLATE_PATH,
