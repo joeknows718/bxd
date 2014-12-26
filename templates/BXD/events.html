@@ -1,10 +1,14 @@
 {% extends 'BXD/base.html' %}
+{% load bootstrap_calendar %}
 	{% block title %} {{ category_name }} {% endblock %}
 	{% block body_block %}
 	<h1>Check out these upcoming events</h1>
 
 	<p>Event Calender here</p>
 	
+	{% bootstrap_controls 'optional-css-classes' %}
+	{% bootstrap_calendar 'optional-css-classes' %}
+
 	<h2>Want event updates - <a href="http://meetup.com/thebronxdigitalmeetup" target="_blank">Sign Up for the Meetup</a> 
 	</h2>
 	{% endblock %}

@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'BXD', 
+    'django_bootstrap_calendar',
     #'calendarium',
     #'filer',
     #'easy_thumbnails',
@@ -99,7 +100,7 @@ STATIC_URL = '/static/'
 #    ]
 
 #
-STATIC_ROOT = ''
+#STATIC_ROOT = ''
 STATICFILES_DIRS = [
   STATIC_PATH,
    ]

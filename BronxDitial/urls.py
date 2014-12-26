@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     #url(r'^$', "BXD.views.index"),
     url(r'', include('BXD.urls')),
     url(r'^BXD/', include('BXD.urls')),
+    url(r'^calendar/', include('django_bootstrap_calendar.urls')),
 )
 
 if settings.DEBUG:
@@ -21,3 +22,9 @@ if settings.DEBUG:
 	'serve',
 	{'document_root': settings.MEDIA_ROOT}),
 		)
+    
+if settings.DEBUG:
+    urlpatterns += patterns('',
+     (r'^static/(?P<path>.*)$', 'django.views.static.serve',         
+     {'document_root': settings.STATIC_ROOT}),
+        )
